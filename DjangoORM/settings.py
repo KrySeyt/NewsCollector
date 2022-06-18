@@ -1,5 +1,5 @@
 INSTALLED_APPS = [
-    'orm',
+    'DjangoORM.orm',
 ]
 
 DATABASES = {
