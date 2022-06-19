@@ -1,5 +1,6 @@
 import os
 
+
 INSTALLED_APPS = [
     'DjangoORM.orm',
 ]
