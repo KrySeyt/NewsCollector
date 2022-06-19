@@ -97,8 +97,8 @@ def main():
         try:
             collect_data()
             time.sleep(3600)
-        except AttributeError as e:
-            print(e)
+        except AttributeError:
+            pass
 
 
 if __name__ == '__main__':
