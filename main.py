@@ -93,7 +93,12 @@ def collect_data() -> None:
 
 
 def main():
-    collect_data()
+    while True:
+        try:
+            collect_data()
+            time.sleep(3600)
+        except AttributeError as e:
+            print(e)
 
 
 if __name__ == '__main__':
