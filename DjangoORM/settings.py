@@ -1,3 +1,5 @@
+import os
+
 INSTALLED_APPS = [
     'DjangoORM.orm',
 ]
@@ -5,11 +7,11 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': None,
-        'USER': None,
-        'NAME': None,
-        'PORT': None,
-        'PASSWORD': None,
+        'HOST': os.getenv('HerokuPostgresHost'),
+        'USER': os.getenv('HerokuPostgresUser'),
+        'NAME': os.getenv('HerokuPostgresDatabase'),
+        'PORT': os.getenv('HerokuPostgresPort'),
+        'PASSWORD': os.getenv('HerokuPostgresPassword'),
         'ATOMIC_REQUESTS': True,
     },
 }
