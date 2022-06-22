@@ -58,7 +58,7 @@ def rss_parse(rss_url: str):
 
         title: str = new.title.get_text()
 
-        slug_start: int = len(r'https://www.cybersport.ru/tags/dota-2/') - 1
+        slug_start: int = len(rf'https://www.cybersport.ru/tags/{category_slug}/') - 1
         slug: str = new.link.get_text()[slug_start:]
 
         soup: BeautifulSoup = get_new_soup(fr"https://www.cybersport.ru/tags/{category_slug}/{slug}")

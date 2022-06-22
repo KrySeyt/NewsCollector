@@ -23,7 +23,7 @@ class New(models.Model):
         ordering = ['-date']
 
     title = models.CharField(max_length=300)
-    text = models.CharField(max_length=5000)
+    text = models.CharField(max_length=15000)
     slug = models.CharField(max_length=300)
     date = models.DateTimeField()
     image_url = models.CharField(max_length=300, blank=True)
