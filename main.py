@@ -96,9 +96,10 @@ def main():
     while True:
         try:
             collect_data()
+        except AttributeError as error:
+            print(error)
+        finally:
             time.sleep(3600)
-        except AttributeError:
-            pass
 
 
 if __name__ == '__main__':
