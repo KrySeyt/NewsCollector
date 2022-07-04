@@ -62,16 +62,16 @@ def rss_parse(rss_url: str):
         new_slug: str = link[5]
 
         soup: BeautifulSoup = get_new_soup(fr"https://www.cybersport.ru/tags/{category_slug}/{new_slug}")
-        text: str = get_new_text(soup)
+        new_text: str = get_new_text(soup)
         date: datetime = datetime.strptime(new.pubDate.get_text(), '%a, %d %b %y %H:%M:%S %z')
         image_url: str = new.enclosure['url']
-        yield {'new_title': new_title, 'new_slug': new_slug, 'text': text, 'date': date, 'image_url': image_url,
+        yield {'new_title': new_title, 'new_slug': new_slug, 'new_text': new_text, 'date': date, 'image_url': image_url,
                'category_slug': category_slug, 'category_name': category_name}
 
 
 def collect_data() -> None:
     for new in rss_parse(RSS_URL):
-        if not models.New.objects.filter(slug=new['slug']).exists():
+        if not models.New.objects.filter(slug=new['new_slug']).exists():
             if models.Category.objects.filter(slug=new['category_slug']).exists():
                 category: models.Category = models.Category.objects.get(slug=new['category_slug'])
             else:
@@ -82,9 +82,9 @@ def collect_data() -> None:
                 category.save()
 
             models.New.objects.create(
-                title=new['title'],
-                text=new['text'],
-                slug=new['slug'],
+                title=new['new_title'],
+                text=new['new_text'],
+                slug=new['new_slug'],
                 date=new['date'],
                 image_url=new['image_url'],
                 category=category,
