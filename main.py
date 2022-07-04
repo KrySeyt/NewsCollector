@@ -53,19 +53,19 @@ def rss_parse(rss_url: str):
 
         counter += 1
 
-        category_slug: str = new.link.get_text().split('/')[4]
+        link: list = new.link.get_text().split('/')
+
+        category_slug: str = link[4]
         category_name: str = slug_to_category_name[category_slug]
 
-        title: str = new.title.get_text()
+        new_title: str = new.title.get_text()
+        new_slug: str = link[5]
 
-        slug_start: int = len(rf'https://www.cybersport.ru/tags/{category_slug}/') - 1
-        slug: str = new.link.get_text()[slug_start:]
-
-        soup: BeautifulSoup = get_new_soup(fr"https://www.cybersport.ru/tags/{category_slug}/{slug}")
+        soup: BeautifulSoup = get_new_soup(fr"https://www.cybersport.ru/tags/{category_slug}/{new_slug}")
         text: str = get_new_text(soup)
         date: datetime = datetime.strptime(new.pubDate.get_text(), '%a, %d %b %y %H:%M:%S %z')
         image_url: str = new.enclosure['url']
-        yield {'title': title, 'slug': slug, 'text': text, 'date': date, 'image_url': image_url,
+        yield {'new_title': new_title, 'new_slug': new_slug, 'text': text, 'date': date, 'image_url': image_url,
                'category_slug': category_slug, 'category_name': category_name}
 
 
