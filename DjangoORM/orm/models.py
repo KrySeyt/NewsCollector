@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class Rating(models.Model):
+    pass
+
+
 class Category(models.Model):
     class Meta:
         db_table = 'category'
@@ -29,6 +33,7 @@ class New(models.Model):
     image_url = models.CharField(max_length=300, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     is_published = models.BooleanField()
+    rating = models.OneToOneField(Rating, on_delete=models.SET_NULL, related_name='related_object', null=True)
 
     def __repr__(self):
         return f"New(title='{self.title}')"

@@ -89,6 +89,7 @@ def collect_data() -> None:
                 image_url=new['image_url'],
                 category=category,
                 is_published=True,
+                rating=models.Rating.objects.create()
             )
 
 
