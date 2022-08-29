@@ -2,6 +2,8 @@ import os
 
 
 INSTALLED_APPS = [
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'DjangoORM.orm',
 ]
 
@@ -18,3 +20,5 @@ DATABASES = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'orm.CybersportUser'

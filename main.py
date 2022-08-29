@@ -89,18 +89,17 @@ def collect_data() -> None:
                 image_url=new['image_url'],
                 category=category,
                 is_published=True,
-                rating=models.Rating.objects.create()
             )
 
 
 def main():
     while True:
-        try:
-            collect_data()
-        except AttributeError as error:
-            print(error)
-        finally:
-            time.sleep(3600)
+        # try:
+        collect_data()
+        # except AttributeError as error:
+        #     print(error)
+        # finally:
+        #     time.sleep(3600)
 
 
 if __name__ == '__main__':
