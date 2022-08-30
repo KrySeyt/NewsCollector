@@ -88,8 +88,9 @@ class Comment(models.Model):
 
 class NewManager(models.Manager):
     def create(self, *args, **kwargs):
-        self.rating = CybersportRating.objects.create()
-        super(NewManager, self).create(*args, **kwargs)
+        if 'rating' not in kwargs:
+            kwargs['rating'] = CybersportRating.objects.create()
+        return super(NewManager, self).create(*args, **kwargs)
 
 
 class New(models.Model):

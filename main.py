@@ -94,12 +94,12 @@ def collect_data() -> None:
 
 def main():
     while True:
-        # try:
-        collect_data()
-        # except AttributeError as error:
-        #     print(error)
-        # finally:
-        #     time.sleep(3600)
+        try:
+            collect_data()
+        except AttributeError as error:
+            print(error)
+        finally:
+            time.sleep(3600)
 
 
 if __name__ == '__main__':
